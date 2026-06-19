@@ -8,6 +8,7 @@ set(CMAKE_CXX_EXTENSION OFF)
 
 set( SOURCE_FILES
 	src/Application.cpp
+    src/Main.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
