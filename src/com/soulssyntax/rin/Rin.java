@@ -82,6 +82,7 @@ public class Rin
         System.err.println(
             "[line" + line + "] Error" + where + ": " + message;
             hadError = true;
-            )
+            );
     }
+
 }

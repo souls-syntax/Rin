@@ -1,0 +1,27 @@
+Archetype     -> class
+Genesis       -> var
+Origin        -> this
+Progenitor    -> super
+
+Mystery       -> fun
+
+Judgment      -> if
+Deviation     -> else
+
+Samsara       -> for
+Eternity      -> while
+
+Resonance     -> and
+Possibility   -> or
+
+Ether         -> true
+Phantasm      -> false
+Nothingness   -> nil
+
+Materialize   -> print
+Paradox       -> return
+
+Kaleidoscope  -> switch
+Singularity   -> throw
+Oblivion      -> break
+Progression   -> continue
