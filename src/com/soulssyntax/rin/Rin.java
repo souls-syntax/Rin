@@ -1,9 +1,6 @@
 /* Package */
 package com.soulssyntax.rin;
 
-/* Internal Packages */
-import com.soulssyntax.utils.Log;
-
 /* Builtin Packages */
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,7 +22,7 @@ public class Rin
     {
         if(args.length > 1)
         {
-            Log("Usage: jlox [script]");
+            System.out.println("Usage: jlox [script]");
             System.exit(64);
         }
         else if(args.length == 1)

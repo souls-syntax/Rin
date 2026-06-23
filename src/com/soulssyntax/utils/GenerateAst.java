@@ -5,7 +5,6 @@ import java.io.printwriter;
 import java.util.arrays;
 import java.util.list;
 
-
 public class generateast
 {
     public static void main(string[] args) throws ioexception
