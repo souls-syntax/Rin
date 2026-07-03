@@ -17,7 +17,11 @@ public class Rin
 
     static boolean hadError = false;
 
+    static boolean hadRuntimeError = false;
     /* Methods */
+
+    private static final Interpreter interpreter = new Interpreter();
+
     public static void main(String[] args) throws IOException
     {
         if(args.length > 1)
@@ -41,6 +45,7 @@ public class Rin
         run(new String(bytes, Charset.defaultCharset()));
 
         if (hadError) System.exit(65);
+        if (hadRuntimeError) System.exit(70);
     }
 
     private static void runPrompt() throws IOException
@@ -63,30 +68,39 @@ public class Rin
         Scanner scanner = new Scanner(source);
         List<Token> tokens = scanner.scanTokens();
 
-        for (Token token : tokens)
-        {
-            System.out.println(token);
-        }
+        Parser parser = new Parser(tokens);
+        Expr expression = parser.parse();
+
+        if (hadError) return;
+
+        interpreter.interpret(expression);
+
+        // System.out.println(new AstPrinter().print(expression));
     }
 
-    static void error(int line, String message)
+    static void error(Token token, String message)
     {
         if(token.type == TokenType.EOF)
         {
-            report(token.line, " at end ", message);
+            report(token.line, " at end", message);
         }
         else
         {
-            report(token.line, " at " + token.lexeme + "'", message);
+            report(token.line, " at '" + token.lexeme + "'", message);
         }
+    }
+
+    static void runtimeError(RuntimeError error)
+    {
+        System.err.println(error.getMessage() + "\n[line "+ error.token.line + "]");
+        hadRuntimeError = true;
     }
 
     private static void report(int line, String where, String message)
     {
-        System.err.println(
-            "[line" + line + "] Error" + where + ": " + message;
-            hadError = true;
-            );
+        System.err.println("[line" + line + "] Error" + where + ": " + message);
+        hadError = true;
+
     }
 
 }

@@ -1,9 +1,9 @@
 package com.soulssyntax.rin;
 
-import java.utils.ArrayList;
-import java.utils.HashMap;
-import java.utils.List;
-import java.utils.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static com.soulssyntax.rin.TokenType.*;
 
@@ -97,7 +97,7 @@ class Scanner
             }
             else
             {
-                Rin.error(line, "Unexpected character.");
+                Rin.error(new Token(EOF, "", null, line), "Unexpected character.");
             }
             break;
         }
@@ -130,11 +130,9 @@ class Scanner
         while(isAlphaNumeric(peek())) advance();
 
         String text = source.substring(start, current);
-        TokenType type = keyword.get(text);
+        TokenType type = keywords.get(text);
         if(type == null) type = IDENTIFIER;
         addToken(type);
-
-        addToken(IDENTIFIER);
     }
     private char advance()
     {
@@ -199,7 +197,7 @@ class Scanner
         }
         if(isAtEnd())
         {
-            Rin.error(line, "Unterminated string");
+            Rin.error(new Token(EOF, "", null, line), "Unterminated string");
             return;
         }
 

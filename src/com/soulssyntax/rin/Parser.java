@@ -1,4 +1,4 @@
-package com.soulssytnax.rin;
+package com.soulssyntax.rin;
 
 import java.util.List;
 
@@ -112,7 +112,7 @@ class Parser
         {
             Expr expr = expression();
             consume(RIGHT_PAREN, "Expected ')' after expression.");
-            return new Expr.Goruping(expr);
+            return new Expr.Grouping(expr);
         }
 
         throw error(peek(), "Expect expression.");
